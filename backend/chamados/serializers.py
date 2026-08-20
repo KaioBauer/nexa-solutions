@@ -16,17 +16,13 @@ class ChamadoSerializer(serializers.ModelSerializer):
             "atualizado_em",
         ]
 
-        # Falha intencional:
-        # A API aceita criação de chamados sem título.
-        extra_kwargs = {
-            "titulo": {
-                "required": False,
-                "allow_blank": True,
-            },
-        }
-
         read_only_fields = [
             "id",
             "criado_em",
             "atualizado_em",
         ]
+
+    def validate_titulo(self, value):
+        if not value or not value.strip():
+            raise serializers.ValidationError("O título é obrigatório.")
+        return value.strip()
