@@ -8,7 +8,7 @@ class Chamado(models.Model):
         CONCLUIDO = "CONCLUIDO", "Concluído"
 
 
-    titulo = models.CharField(max_length=150, blank=True)
+    titulo = models.CharField(max_length=150, blank=False)
 
     descricao = models.TextField(blank=True)
 
